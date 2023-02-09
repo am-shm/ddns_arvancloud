@@ -1,0 +1,30 @@
+#!/bin/bash
+
+DOMAIN=""
+DOMAIN_ID=""
+MU_KEY=""
+PUBLIC_IP=$(pub ip command)
+
+curl --location --request PUT 'https://napi.arvancloud.ir/cdn/4.0/domains/$DOMAIN/dns-records/$DOMAIN_ID' \
+--header 'Authorization: $MU_KEY' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "type": "a",
+  "name": "string",
+  "value": [
+    {
+      "ip": "$PUBLIC_IP",
+      "port": 1,
+      "weight": 1000,
+      "country": "US"
+    }
+  ],
+  "ttl": 120,
+  "cloud": false,
+  "upstream_https": "default",
+  "ip_filter_mode": {
+    "count": "single",
+    "order": "none",
+    "geo_filter": "none"
+  }
+}'
