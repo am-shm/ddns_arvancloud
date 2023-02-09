@@ -3,7 +3,7 @@
 DOMAIN=""
 DOMAIN_ID=""
 MU_KEY=""
-PUBLIC_IP=$(pub ip command)
+PUBLIC_IP=$(curl api.ipify.org)
 
 curl --location --request PUT 'https://napi.arvancloud.ir/cdn/4.0/domains/$DOMAIN/dns-records/$DOMAIN_ID' \
 --header 'Authorization: $MU_KEY' \
